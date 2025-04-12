@@ -2,8 +2,8 @@
 Contributors: jeroenpeters1986
 Tags: facebook, like button, like box, facebox, fanpage, like, likebox, facebook page, likebutton, like button, thumbs up
 Requires at least: 3.0
-Tested up to: 6.5
-Stable tag: 2.2.8
+Tested up to: 6.8
+Stable tag: 2.2.9
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Donate link: https://ko-fi.com/jeroenpeters
@@ -17,7 +17,7 @@ If you are looking for a quick and simple way to display a Facebook Like box, th
 **You can choose how you want to display it!**
 
 * ..just a simple box with Facebook Like button and profile picture
-* ..a like button + timeline stream (offcourse with a Like button and profile picture)
+* ..a like button + timeline stream (of course with a Like button and profile picture)
 * ..a like button + pictures of your friends who also like the page (also with a Like button and profile picture)
 * ..a like button + timeline, events, messages and pictures of your friends
 
@@ -98,7 +98,7 @@ If you have questions about the plugin or if you have ideas to share, the best w
 
 = Support/Donate =
 
-If you like this module and want to support and/or thank me, [please buy me a coffee](https://www.buymeacoffee.com/jeroenpeters).
+If you like this module and want to support and/or thank me, [please buy me a coffee](https://ko-fi.com/jeroenpeters).
 
 = Do you also offer customizations? =
 
@@ -115,11 +115,15 @@ The Patchstack team helps validate, triage and handle any security vulnerabiliti
 1. Widget admin section of this plugin / widget
 2. Sidebar front-end of widget with faces and header option
 3. An entire webpage with the Facebook Like Widget
-4. Like Widget in it's most compact mode
+4. Like Widget in its most compact mode
 5. Like Widget with a changed language and a header / cover photo
-6. Full blown Like Widget with Timeline and Event options
+6. Full-blown Like Widget with Timeline and Event options
 
 == Changelog ==
+
+= 2.2.9 | April 12, 2025 =
+ * Maintenance: WordPress 6.8 compatible
+ * Maintenance: Removed deprecated WP calls
 
 = 2.2.8 | April 3, 2024 =
  * Bugfix: XSS vulnerability in the widget title in the WordPress admin
@@ -185,7 +189,7 @@ The Patchstack team helps validate, triage and handle any security vulnerabiliti
  - Added Dutch translation for the widget-settings screen
 
 = 1.1 =
- - Added language selector with all of the Facebook languages, including Frysian, Limburgian, Leetspeak, Upside down and pirate!
+ - Added language selector with all the Facebook languages, including Frysian, Limburgian, Leetspeak, Upside down and pirate!
 
 = 1.0 =
  - Refactored old code
