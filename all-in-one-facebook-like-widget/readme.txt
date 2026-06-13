@@ -1,14 +1,14 @@
 === All-in-one Like Widget ===
 Contributors: jeroenpeters1986
-Tags: facebook, like button, like box, facebox, fanpage, like, likebox, facebook page, likebutton, like button, thumbs up
+Tags: facebook, like button, fanpage, like, social media
 Requires at least: 3.0
-Tested up to: 6.8
-Stable tag: 2.2.9
+Tested up to: 7.0
+Stable tag: 2.3.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Donate link: https://ko-fi.com/jeroenpeters
 
-All-in-one Like Widget. Lets you quickly add a Like Button, activity stream and/or a Fanbox to your WordPress site for your Facebook fanpage (as a widget).
+All-in-one Like Widget for your Facebook page. Quickly add a Like button, activity stream and/or a Fanbox in a widget.
 
 == Description ==
 
@@ -26,19 +26,24 @@ If you want to see what options you have, please see the screenshots.
 
 Choose your options and save the widget. Now your visitors can like your Facebook page straight from your website.
 
-**Extra's:**
+#### Extra's:
 
 * Language selector, choose which language the Like button displays
 * Choose whether you want to use the page headerpicture as well
 * Compact mode!
 * Set your own height (hidden feature of Facebooks widget, not many plugins offer this feature)
 
-**Widget settings screen available in two languages:**
+#### Widget settings screen available in three languages:
 
 * English
 * Dutch
+* Swedish
 
-**Over 70 languages supported for the widget, most popular:**
+If you also want the plugin in your language, please help us translate!
+You can translate directly by going to [https://translate.wordpress.org/projects/wp-plugins/all-in-one-facebook-like-widget](https://translate.wordpress.org/projects/wp-plugins/all-in-one-facebook-like-widget),
+login with your WordPress account, click Select your language and go to 'Contribute Translation'.
+
+#### Over 70 languages supported for the widget, for example:
 
 * English
 * French
@@ -63,9 +68,10 @@ Choose your options and save the widget. Now your visitors can like your Faceboo
 * Leet Speak
 * And over 50 others!
 
-Do you have new ideas, questions or suggestions? Tell me in the plugin forums or tweet @jeroen_p
+#### Support
+If you like this plugin and want to support and/or thank me, [please buy me a coffee](https://ko-fi.com/jeroenpeters).
 
-This plugin is not published, sponsored, endorsed by, or associated with the social network Facebook.
+This plugin is not published, sponsored, endorsed by, or associated with the social network Facebook and/or Meta.
 
 == Installation ==
 
@@ -120,6 +126,11 @@ The Patchstack team helps validate, triage and handle any security vulnerabiliti
 6. Full-blown Like Widget with Timeline and Event options
 
 == Changelog ==
+
+= 2.3.0 | June 13, 2026 =
+ * Fix: Removed the Facepile option, as Facebook has removed this option from their API
+ * Maintenance: WordPress 7.0 compatible
+ * Maintenance: Cleaned up code
 
 = 2.2.9 | April 12, 2025 =
  * Maintenance: WordPress 6.8 compatible

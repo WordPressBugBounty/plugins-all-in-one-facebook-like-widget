@@ -1,9 +1,9 @@
 <?php
 /**
  * Plugin Name: All-in-one Like Widget
- * Plugin URI: https://jeroenpeters.dev
+ * Plugin URI: https://jeroenpeters.dev/english/software/facebook-all-in-one-likebox-widget
  * Description: All-in-one Like Widget. Add a Like button, stream or facebox (fans) for your Facebook page to your site.
- * Version: 2.2.9
+ * Version: 2.3.0
  * Author: Jeroen Peters
  * Author URI: https://jeroenpeters.dev
  * Text Domain: all-in-one-facebook-like-widget
@@ -76,18 +76,18 @@ class AIO_Facebook_Like_widget extends WP_Widget
         $this->facebook_width = $instance['width'];
         $this->facebook_height = $instance['height'];
         $this->facebook_language = $instance['language'];
-        $this->facebook_show_faces = ($instance['show_faces'] == "1"? "true" : "false");
-        $this->facebook_hide_cover = ($instance['show_header'] == "1"? "false" : "true");
-        $this->facebook_small_header = (empty($instance['small_header'])? "false" : "true");
-        $this->facebook_tabs = (empty($instance['tabs'])?"timeline":$instance['tabs']);
+        $this->facebook_show_faces = ($instance['show_faces'] == '1'? 'true' : 'false');
+        $this->facebook_hide_cover = ($instance['show_header'] == '1'? 'true' : 'false');
+        $this->facebook_small_header = (empty($instance['small_header'])? 'false' : 'true');
+        $this->facebook_tabs = (empty($instance['tabs']) ? 'timeline' : $instance['tabs']);
 
         /* Legacy from v1.4 */
         if(isset($instance['show_stream']) && empty($instance['tabs']))
         {
-            $this->facebook_tabs = "";
-            if($instance['show_stream'] == "1")
+            $this->facebook_tabs = '';
+            if($instance['show_stream'] == '1')
             {
-                $this->facebook_tabs = "timeline";
+                $this->facebook_tabs = 'timeline';
             }
         }
 
@@ -143,11 +143,11 @@ class AIO_Facebook_Like_widget extends WP_Widget
     public function update($new_instance, $old_instance)
     {
         $facebook_strips = array(
-            "http://facebook.com/",
-            "https://facebook.com/",
-            "http://www.facebook.com/",
-            "https://www.facebook.com/",
-            "facebook.com/",
+            'http://facebook.com/',
+            'https://facebook.com/',
+            'http://www.facebook.com/',
+            'https://www.facebook.com/',
+            'facebook.com/',
         );
 
         $instance = $old_instance;
@@ -308,13 +308,11 @@ class AIO_Facebook_Like_widget extends WP_Widget
             <input type="text" class="widefat" id="<?php echo $this->get_field_id('title'); ?>" name="<?php echo $this->get_field_name('title'); ?>" value="<?php echo esc_attr($instance['title']); ?>" />
         </p>
 
-
         <!-- Facebook pagename or id: Text Input -->
         <p>
             <label for="<?php echo $this->get_field_id('page_name'); ?>" title="<?php _e('This is the name of your page (the part after http://facebook.com/', 'aio-facebook-like-widget') ?>"><?php _e('Facebook Page Name (or Id)', 'aio-facebook-like-widget') ?>:</label>
             <input type="text" class="widefat" id="<?php echo $this->get_field_id('page_name'); ?>" name="<?php echo $this->get_field_name('page_name'); ?>" value="<?php echo esc_attr($instance['page_name']); ?>" />
         </p>
-
 
         <!-- Width: Text Input -->
         <p>
@@ -322,13 +320,11 @@ class AIO_Facebook_Like_widget extends WP_Widget
             <input type="text" class="widefat" id="<?php echo $this->get_field_id('width'); ?>" name="<?php echo $this->get_field_name('width'); ?>" value="<?php echo esc_attr($instance['width']); ?>" />
         </p>
 
-
         <!-- Height: Text Input -->
         <p>
             <label for="<?php echo $this->get_field_id('height'); ?>" title="<?php _e("Leave blank or set to 'auto' to let the plugin determine the best height", 'aio-facebook-like-widget') ?>"><?php _e('Height', 'aio-facebook-like-widget') ?>:</label>
             <input type="text" class="widefat" id="<?php echo $this->get_field_id('height'); ?>" name="<?php echo $this->get_field_name('height'); ?>" value="<?php echo esc_attr($instance['height']); ?>" />
         </p>
-
 
         <!-- Tabs: Selectbox input -->
         <p>
@@ -343,27 +339,17 @@ class AIO_Facebook_Like_widget extends WP_Widget
             </select>
         </p>
 
-
-        <!-- Show Faces: Checkbox Input -->
-        <p>
-            <input type="checkbox" class="widefat" id="<?php echo $this->get_field_id('show_faces'); ?>" name="<?php echo $this->get_field_name('show_faces'); ?>" value="1" <?php echo ($instance['show_faces'] == "true" ? "checked='checked'" : ""); ?> />
-            <label for="<?php echo $this->get_field_id('show_faces'); ?>"><?php _e('Show friends faces when logged in', 'aio-facebook-like-widget'); ?></label>
-        </p>
-
-
         <!-- Show Header: Checkbox Input -->
         <p>
             <input type="checkbox" class="widefat" id="<?php echo $this->get_field_id('show_header'); ?>" name="<?php echo $this->get_field_name('show_header'); ?>" value="1" <?php echo ($instance['show_header'] == "true" ? "checked='checked'" : ""); ?> />
             <label for="<?php echo $this->get_field_id('show_header'); ?>"><?php _e('Show page header', 'aio-facebook-like-widget'); ?></label>
         </p>
 
-
         <!-- Show Small Header: Checkbox Input -->
         <p>
             <input type="checkbox" class="widefat" id="<?php echo $this->get_field_id('small_header'); ?>" name="<?php echo $this->get_field_name('small_header'); ?>" value="1" <?php echo ($instance['small_header'] == "true" ? "checked='checked'" : ""); ?> />
             <label for="<?php echo $this->get_field_id('small_header'); ?>" title="<?php _e('Creates the smallest widget possible with a small cover photo', 'aio-facebook-like-widget'); ?>"><?php _e('Compact mode', 'aio-facebook-like-widget'); ?></label>
         </p>
-
 
         <!-- Languages: Selectbox input -->
         <p>
