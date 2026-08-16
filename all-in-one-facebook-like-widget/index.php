@@ -3,7 +3,7 @@
  * Plugin Name: All-in-one Like Widget
  * Plugin URI: https://jeroenpeters.dev/english/software/facebook-all-in-one-likebox-widget
  * Description: All-in-one Like Widget. Add a Like button, stream or facebox (fans) for your Facebook page to your site.
- * Version: 2.3.0
+ * Version: 2.3.1
  * Author: Jeroen Peters
  * Author URI: https://jeroenpeters.dev
  * Text Domain: all-in-one-facebook-like-widget
@@ -36,7 +36,6 @@ class AIO_Facebook_Like_widget extends WP_Widget
     private $facebook_width = "240";
     private $facebook_height = "auto";
     private $facebook_language = "en_US";
-    private $facebook_show_faces = "true";
     private	$facebook_show_stream = "false";
     private	$facebook_show_header = "true";
     private	$facebook_hide_cover = "true";
@@ -76,7 +75,6 @@ class AIO_Facebook_Like_widget extends WP_Widget
         $this->facebook_width = $instance['width'];
         $this->facebook_height = $instance['height'];
         $this->facebook_language = $instance['language'];
-        $this->facebook_show_faces = ($instance['show_faces'] == '1'? 'true' : 'false');
         $this->facebook_hide_cover = ($instance['show_header'] == '1'? 'true' : 'false');
         $this->facebook_small_header = (empty($instance['small_header'])? 'false' : 'true');
         $this->facebook_tabs = (empty($instance['tabs']) ? 'timeline' : $instance['tabs']);
@@ -98,21 +96,20 @@ class AIO_Facebook_Like_widget extends WP_Widget
 
         if($this->widget_title)
         {
-            echo $args['before_title'] . $this->widget_title . $args['after_title'];
+            echo $args['before_title'] . esc_html($this->widget_title) . $args['after_title'];
         }
 
         /* Like Box */
         ?>
         <div class="fb-page"
-             data-href="https://www.facebook.com/<?php echo $this->facebook_username;?>"
-             data-width="<?php echo $this->facebook_width;?>"
+             data-href="https://www.facebook.com/<?php echo esc_attr($this->facebook_username);?>"
+             data-width="<?php echo esc_attr($this->facebook_width);?>"
             <?php if(! empty($this->facebook_height) && $this->facebook_height != 'auto') {
-                echo 'data-height="' . $this->facebook_height . '"' . "\n";
+                echo 'data-height="' . esc_attr($this->facebook_height) . '"' . "\n";
             }?>
-             data-tabs="<?php echo $this->facebook_tabs;?>"
-             data-hide-cover="<?php echo $this->facebook_hide_cover;?>"
-             data-show-facepile="<?php echo $this->facebook_show_faces;?>"
-             data-small-header="<?php echo $this->facebook_small_header;?>"
+             data-tabs="<?php echo esc_attr($this->facebook_tabs);?>"
+             data-hide-cover="<?php echo esc_attr($this->facebook_hide_cover);?>"
+             data-small-header="<?php echo esc_attr($this->facebook_small_header);?>"
         >
         </div>
 
@@ -131,7 +128,7 @@ class AIO_Facebook_Like_widget extends WP_Widget
             var js, fjs = d.getElementsByTagName(s)[0];
             if (d.getElementById(id)) return;
             js = d.createElement(s); js.id = id;
-            js.src = "//connect.facebook.net/' . $this->facebook_language . '/all.js#xfbml=1&appId=";
+            js.src = "//connect.facebook.net/' . esc_js($this->facebook_language) . '/all.js#xfbml=1&appId=";
             fjs.parentNode.insertBefore(js, fjs);
         }(document, \'script\', \'facebook-jssdk\'));</script>';
     }
@@ -153,14 +150,20 @@ class AIO_Facebook_Like_widget extends WP_Widget
         $instance = $old_instance;
 
         /* Strip tags for title and name to remove HTML (important for text inputs) */
-        $instance['title'] = strip_tags($new_instance['title']);
-        $instance['page_name'] = str_replace($facebook_strips, array(), strip_tags($new_instance['page_name']));
+        $instance['title'] = sanitize_text_field($new_instance['title']);
+        $instance['page_name'] = str_replace($facebook_strips, array(), wp_strip_all_tags($new_instance['page_name']));
+
+        if( in_array($instance['page_name'], array_keys($this->getLanguages())) ) {
+            $instance['language'] = $new_instance['language'];
+        } else if( ! empty($old_instance['language']) ) {
+            $instance['language'] = $old_instance['language'];
+        } else {
+            $instance['language'] = 'en_US';
+        }
 
         $instance['width'] = intval(strip_tags($new_instance['width']));
         $instance['height'] = intval(strip_tags($new_instance['height']));
-        $instance['language'] = strip_tags($new_instance['language']);
         $instance['tabs'] = strip_tags($new_instance['tabs']);
-        $instance['show_faces'] = (bool)$new_instance['show_faces'];
         $instance['show_stream'] = (bool)$new_instance['show_stream'];
         $instance['show_header'] = (bool)$new_instance['show_header'];
         $instance['small_header'] = (bool)$new_instance['small_header'];
@@ -168,26 +171,8 @@ class AIO_Facebook_Like_widget extends WP_Widget
         return $instance;
     }
 
-    /**
-     * Back end widget Form
-     * This displays the configuration form for the widget
-     */
-    public function form($instance)
-    {
-        $defaults = array(
-            'title' => $this->widget_title,
-            'page_name' => $this->facebook_username,
-            'width' => $this->facebook_width,
-            'height' => $this->facebook_height,
-            'language' => $this->facebook_language,
-            'show_faces' => $this->facebook_show_faces,
-            'show_stream' => $this->facebook_show_stream,
-            'show_header' => $this->facebook_show_header,
-            'small_header' => $this->facebook_small_header,
-            'tabs' => $this->facebook_tabs,
-        );
-
-        $available_languages = array(
+    public function getLanguages() {
+        return array(
             'en_US-' => __('Most popular','aio-facebook-like-widget'),
             'en_US--' => '---',
             'en_US' => __('English','aio-facebook-like-widget')         . ' - English',
@@ -290,6 +275,27 @@ class AIO_Facebook_Like_widget extends WP_Widget
             'en_UD' => __('English (Upside Down)','aio-facebook-like-widget') . ' - English (Upside Down)',
             'fb_LT' => __('Leet Speak','aio-facebook-like-widget')      . ' - Leet Speak',
         );
+    }
+
+    /**
+     * Back end widget Form
+     * This displays the configuration form for the widget
+     */
+    public function form($instance)
+    {
+        $defaults = array(
+            'title' => $this->widget_title,
+            'page_name' => $this->facebook_username,
+            'width' => $this->facebook_width,
+            'height' => $this->facebook_height,
+            'language' => $this->facebook_language,
+            'show_stream' => $this->facebook_show_stream,
+            'show_header' => $this->facebook_show_header,
+            'small_header' => $this->facebook_small_header,
+            'tabs' => $this->facebook_tabs,
+        );
+
+        $available_languages = $this->getLanguages();
 
         $tabs = array(
             '' => __('No','aio-facebook-like-widget'),

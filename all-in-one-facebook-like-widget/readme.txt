@@ -3,7 +3,7 @@ Contributors: jeroenpeters1986
 Tags: facebook, like button, fanpage, like, social media
 Requires at least: 3.0
 Tested up to: 7.0
-Stable tag: 2.3.0
+Stable tag: 2.3.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Donate link: https://ko-fi.com/jeroenpeters
@@ -126,6 +126,10 @@ The Patchstack team helps validate, triage and handle any security vulnerabiliti
 6. Full-blown Like Widget with Timeline and Event options
 
 == Changelog ==
+
+= 2.3.1 | August 16, 2026 =
+ * Maintenance: WordPress 7.1 compatible
+ * Security: Added extra security measurement
 
 = 2.3.0 | June 13, 2026 =
  * Fix: Removed the Facepile option, as Facebook has removed this option from their API
