@@ -2,7 +2,7 @@
 Contributors: jeroenpeters1986
 Tags: facebook, like button, fanpage, like, social media
 Requires at least: 3.0
-Tested up to: 7.0
+Tested up to: 7.1
 Stable tag: 2.3.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
